@@ -1,7 +1,8 @@
-import vk_api.vk_api
+import vk_api
 import random
 import urllib.request, json 
 
+from vk_api.bot_longpoll import VkBotLongPoll
 
 class Server:
 
@@ -45,9 +46,7 @@ class Server:
                                           random_id=123456 + random.randint(1,27))
             def start(self):
                 for event in self.long_poll.listen():
-                    print(event.object.text, " ", event.object.peer_id, " ", event.object.from_id)
-                    if event.object.text == "привет":
-                        self.send_msg(event.object.peer_id, "Привет от бота")
+                    print(event)
 
 if __name__ ==  "__main__":
     server1 = Server("токен группы", "id группы", "server1")
